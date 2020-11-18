@@ -1,53 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Api.Models;
 using LiteDB;
 using Microsoft.Extensions.Configuration;
 
 namespace Api.Store
 {
-    public class FileDbStore : IStore
+    public class FileDbStore : IStore, IDisposable
     {
-        private readonly string _dbFileName;
+        private LiteDatabase db;
 
         public FileDbStore(IConfiguration configuration)
         {
-            _dbFileName = configuration.GetSection("DbFileName").Value;
+            db = new LiteDatabase(configuration.GetSection("DbFileName").Value);
         }
 
         public bool Add(Customer customer)
         {
-            using (var db = new LiteDatabase(_dbFileName))
+            var col = db.GetCollection<Customer>("customers");
+            var existCustomer = col.FindOne(x => x.Name == customer.Name);
+            if (existCustomer == null)
             {
-                var col = db.GetCollection<Customer>("customers");
-                var existCustomer = col.FindOne(x=>x.Name==customer.Name);
-                if (existCustomer == null)
-                {
-                    col.Insert(new BsonValue(customer.Name), customer);
-                    return true;
-                }
-                return false;
+                col.Insert(new BsonValue(customer.Name), customer);
+                return true;
             }
+            return false;
         }
 
         public bool Delete(string customerName)
         {
-            using (var db = new LiteDatabase(_dbFileName))
-            {
-                var col = db.GetCollection<Customer>("customers");
-                return col.Delete(customerName);
-            }
+            var col = db.GetCollection<Customer>("customers");
+            return col.Delete(customerName);
+        }
+
+        public void Dispose()
+        {
+            db.Dispose();
         }
 
         public IList<Customer> GetAll()
         {
-            using (var db = new LiteDatabase(_dbFileName))
-            {
-                var col = db.GetCollection<Customer>("customers");
-                return col.FindAll().ToList();
-            }
+            var col = db.GetCollection<Customer>("customers");
+            return col.FindAll().ToList();
         }
     }
 }

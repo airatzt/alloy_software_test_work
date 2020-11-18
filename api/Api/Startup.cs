@@ -19,7 +19,7 @@ namespace Api
             services.AddCors();
             if (Configuration.GetSection("DbFileName").Exists())
             {
-                services.AddTransient<IStore, FileDbStore>();
+                services.AddSingleton<IStore, FileDbStore>();
             }
             else
             {
