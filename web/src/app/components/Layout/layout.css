@@ -1,0 +1,11 @@
+.layout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.layout__children{
+    width: 80%;
+    margin-top: 20px;
+}

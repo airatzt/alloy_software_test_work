@@ -1,18 +1,16 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import NavMenu from "./NavMenu";
+import "./layout.css";
 
 const Layout = ({ children }) => {
   return (
-    <>
       <BrowserRouter>
-        <Container>
+        <div  className="layout">
           <NavMenu />
-          {children}
-        </Container>
+          <div className="layout__children">{children}</div>
+        </div>
       </BrowserRouter>
-    </>
   );
 };
 

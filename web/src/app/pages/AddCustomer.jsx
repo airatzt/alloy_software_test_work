@@ -74,7 +74,12 @@ const AddCustomer = () => {
           error={formik.touched.city && Boolean(formik.errors.anmount)}
           helperText={formik.touched.anmount && formik.errors.anmount}
         />
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button
+          color="primary"
+          variant="contained"
+          type="submit"
+          style={{ marginTop: "20px" }}
+        >
           Submit
         </Button>
       </form>
