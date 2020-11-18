@@ -5,7 +5,14 @@ import Customers from "./pages/Customers";
 import Report from "./pages/Report";
 import AddCustomer from "./pages/AddCustomer";
 
-const queryCache = new QueryCache();
+const queryCache = new QueryCache({
+  defaultConfig: {
+    queries: {
+      refetchOnWindowFocus: true,
+      refetchInterval: 1000,
+    },
+  },
+})
 
 const App = () => {
   return (
