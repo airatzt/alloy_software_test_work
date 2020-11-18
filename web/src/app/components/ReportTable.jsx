@@ -7,25 +7,23 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-const CustomersTable = ({ customers }) => {
+const ReportTable = ({ report }) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">City</TableCell>
-            <TableCell align="right">Anmount</TableCell>
+            <TableCell>City</TableCell>
+            <TableCell>Sum</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {customers.map((row) => (
-            <TableRow key={row.name}>
+          {report.map((row) => (
+            <TableRow key={row.city}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.city}
               </TableCell>
-              <TableCell align="right">{row.city}</TableCell>
-              <TableCell align="right">{row.anmount}</TableCell>
+              <TableCell>{row.sum}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -34,4 +32,4 @@ const CustomersTable = ({ customers }) => {
   );
 };
 
-export default CustomersTable;
+export default ReportTable;

@@ -25,7 +25,7 @@ const AddCustomer = () => {
     onSubmit: (values) => {
       let customer = { ...values };
       customer.anmount = Number(values.anmount);
-      fetch(process.env.REACT_APP_API_URL, {
+      fetch(process.env.REACT_APP_CUSTOMERS_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

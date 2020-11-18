@@ -49,7 +49,7 @@ const NavMenu = () => {
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
             <ListItemLink to="/customers" primary="Покупатели" icon={<GroupIcon />} />
-            <ListItemLink to="/Reports" primary="Отчеты" icon={<AssignmentIndIcon />} />
+            <ListItemLink to="/report" primary="Отчеты" icon={<AssignmentIndIcon />} />
           </List>
         </Paper>
       </Drawer>
