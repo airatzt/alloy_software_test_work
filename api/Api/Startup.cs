@@ -31,7 +31,13 @@ namespace Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(configurePolicy =>
+            {
+                // TODO: replace AnyOrigin by particular domain (Web UI)
+                configurePolicy.AllowAnyOrigin();
+                configurePolicy.AllowAnyHeader();
+                configurePolicy.AllowAnyMethod();
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
