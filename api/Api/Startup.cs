@@ -16,6 +16,7 @@ namespace Api
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             if (Configuration.GetSection("DbFileName").Exists())
             {
                 services.AddTransient<IStore, FileDbStore>();
@@ -30,6 +31,7 @@ namespace Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
+            app.UseCors(builder => builder.AllowAnyOrigin());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
+import dotenv from 'dotenv';
+import dotenvExpand from 'dotenv-expand';
 
+const  myEnv = dotenv.config()
+dotenvExpand(myEnv)
+console.log(process.env.REACT_APP_API_URL);
 ReactDOM.render(
   <React.StrictMode>
     <App />
