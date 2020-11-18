@@ -32,8 +32,12 @@ const AddCustomer = () => {
         },
         body: JSON.stringify(customer),
       })
-        .then(() => {
-          history.push("/customers");
+        .then((resp) => {
+          if (resp.status === 400) {
+            alert("Customer with name: " + customer.name + " is exists");
+          } else {
+            history.push("/customers");
+          }
         })
         .catch((e) => console.log(e));
     },
