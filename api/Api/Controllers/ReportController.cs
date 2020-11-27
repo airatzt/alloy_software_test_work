@@ -26,7 +26,7 @@ namespace Api.Controllers
         {
             var report = _store.GetAll().GroupBy(x => x.City).Select(c => new
             {
-                City = c.First().City,
+                City = c.Key,
                 Sum = c.Sum(x => x.Anmount)
             }
             ).ToList();

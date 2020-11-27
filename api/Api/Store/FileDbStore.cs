@@ -39,6 +39,19 @@ namespace Api.Store
             db.Dispose();
         }
 
+        public Customer EditCustomer(string customerName, Customer customer)
+        {
+            var col = db.GetCollection<Customer>("customers");
+            var existCustomer = col.FindOne(x => x.Name == customerName);
+            if (existCustomer == null)
+            {
+                existCustomer = customer;
+                col.Update(customer);
+            }
+            
+            return customer;
+        }
+
         public IList<Customer> GetAll()
         {
             var col = db.GetCollection<Customer>("customers");

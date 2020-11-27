@@ -12,6 +12,7 @@ const NavMenu = () => {
           <List aria-label="main mailbox folders">
             <ListItemLink to="/customers" primary="Покупатели" icon={<GroupIcon />} />
             <ListItemLink to="/report" primary="Отчеты" icon={<AssignmentIndIcon />} />
+            <ListItemLink to="/web-report" primary="Веб отчеты" icon={<AssignmentIndIcon />} />
           </List>
         </Paper>
     </nav>
@@ -19,3 +20,4 @@ const NavMenu = () => {
 };
 
 export default NavMenu;
+

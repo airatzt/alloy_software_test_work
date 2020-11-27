@@ -8,5 +8,6 @@ namespace Api.Store
         bool Add(Customer customer);
         bool Delete(string customerName);
         IList<Customer> GetAll();
+        Customer EditCustomer(string customerName, Customer customer);
     }
 }

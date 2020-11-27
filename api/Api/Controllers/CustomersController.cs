@@ -21,7 +21,7 @@ namespace Api.Controllers
         public IEnumerable<Customer> Get()
         {
             return _store.GetAll();
-        } 
+        }
 
         // POST api/<CustomersController>
         [HttpPost]
@@ -45,6 +45,12 @@ namespace Api.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPatch("{customerName}")]
+        public Customer Patch(string customerName, [FromBody] Customer customer)
+        {
+            return _store.EditCustomer(customerName, customer);
         }
     }
 }
