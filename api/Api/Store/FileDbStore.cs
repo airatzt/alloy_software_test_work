@@ -43,13 +43,13 @@ namespace Api.Store
         {
             var col = db.GetCollection<Customer>("customers");
             var existCustomer = col.FindOne(x => x.Name == customerName);
-            if (existCustomer == null)
+            if (existCustomer != null)
             {
-                existCustomer = customer;
-                col.Update(customer);
+                col.Update(new BsonValue(customerName), customer);
+                return existCustomer;
             }
             
-            return customer;
+            return null;
         }
 
         public IList<Customer> GetAll()

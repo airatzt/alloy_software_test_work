@@ -5,6 +5,7 @@ import Customers from "./pages/Customers";
 import Report from "./pages/Report";
 import AddCustomer from "./pages/AddCustomer";
 import WebReport from "./pages/WebReport";
+import EditCustomer from "./pages/EditCustomer";
 
 const queryCache = new QueryCache({
   defaultConfig: {
@@ -25,6 +26,8 @@ const App = () => {
           <Route path="/report" component={Report} />
           <Route path="/add-customer" component={AddCustomer} />
           <Route path="/web-report" component={WebReport} />
+          <Route path="/edit-customer/:customerName" component={EditCustomer} />
+
         </Switch>
       </Layout>
     </ReactQueryCacheProvider>

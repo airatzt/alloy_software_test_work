@@ -48,9 +48,15 @@ namespace Api.Controllers
         }
 
         [HttpPatch("{customerName}")]
-        public Customer Patch(string customerName, [FromBody] Customer customer)
+        public IActionResult Patch(string customerName, [FromBody] Customer customer)
         {
-            return _store.EditCustomer(customerName, customer);
+            var updatedCustomer = _store.EditCustomer(customerName, customer);
+            if(updatedCustomer == null)
+            {
+                return BadRequest("No customer with name " + customerName);
+            }
+
+            return Ok(updatedCustomer);
         }
     }
 }
